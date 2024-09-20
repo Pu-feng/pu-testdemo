@@ -2,8 +2,9 @@ name: Deploy Vue 3 to GitHub Pages # 工作流名称
 
 on:
   push:
-    branches:
-      - sit_page # 当推送到 sit_page 分支时触发工作流
+    branches: [sit_page] # 当推送到 sit_page 分支时触发工作流
+    paths-ignore: # 忽略以下文件
+      - 'README.md'
 
 jobs:
   build-and-deploy:
