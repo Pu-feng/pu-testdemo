@@ -1,0 +1,31 @@
+name: Deploy Vue 3 to GitHub Pages # 工作流名称
+
+on:
+  push:
+    branches:
+      - sit_page # 当推送到 sit_page 分支时触发工作流
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # 使用最新的 Ubuntu 运行器
+
+    steps: # 步骤
+      - name: Checkout the repository # 检出仓库代码
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js # 设置 Node.js 环境
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18' # 指定 Node.js 版本，可以根据需要更改
+
+      - name: Install dependencies # 安装项目所需依赖
+        run: npm install
+
+      - name: Build the Vue 3 project # 构建 Vue 3 项目
+        run: npm run build-only
+
+      - name: Deploy to GitHub Pages # 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的内置 Token
+          publish_dir: ./dist # 指定构建输出目录
