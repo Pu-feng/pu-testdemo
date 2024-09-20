@@ -27,5 +27,10 @@ jobs:
       - name: Deploy to GitHub Pages # 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的内置 Token
+          branch: sit_page # 部署到 sit_page 分支
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # 使用部署密钥 在 secrets 中配置 ACTIONS_DEPLOY_KEY
+          github_token: ${{ secrets.PU_TESTDEMO_SECRETS }} # 使用 GitHub 提供的内置 Token
+          user_name: 'github-actions[bot]' # 提交者名称
+          user_email: '41896237+github-actions[bot]@users.nore<EMAIL>' # 提交者邮箱
           publish_dir: ./dist # 指定构建输出目录
+          commit_message: ${{ github.event.head_commit.message }} # 提交信息
