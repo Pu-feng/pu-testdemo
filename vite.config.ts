@@ -23,7 +23,7 @@ export default defineConfig({
 
 // 自定义插件，用于在构建后将 index.html 复制为 404.html
 function copyIndexTo404() {
-  // 用于解决 github pages 404 页面显示问题
+  // 用于解决 github pages 404 页面显示问题（不行先留着）
   return {
     name: 'copy-index-to-404',
     closeBundle() {
